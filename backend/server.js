@@ -1,10 +1,14 @@
-const express = require('express');
-const dotenv = require('dotenv').config();
+const express = require('express')
+const colors = require('colors')
+const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middleware/errorMIddleware')
-const asyncHandler = require('express-async-handler')
-const PORT = process.env.PORT || 4000;
+const connectDB = require('./config/db')
+const PORT = process.env.PORT || 4000
 
-const app = express();
+// Connect to database
+connectDB()
+
+const app = express()
 
 // middleware necessary to populate req.body properly in express routes
 // allow us to send raw JSON 
@@ -15,14 +19,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the Support Desk API' });
+  res.status(200).json({ message: 'Welcome to the Support Desk API' })
 })
 
 // Routes
-app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/users', require('./routes/userRoutes'))
 
 app.use(errorHandler)
-
-app.use(asyncHandler)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
