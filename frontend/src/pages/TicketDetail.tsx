@@ -14,8 +14,6 @@ import {
   Alert,
   CircularProgress,
   IconButton,
-  Tooltip,
-  Paper,
   List,
   ListItem,
   ListItemText,
@@ -25,14 +23,12 @@ import {
   ArrowBack,
   SmartToy,
   AttachFile,
-  Download,
   Send,
   Schedule,
   Person,
   Category,
   Flag,
   CheckCircle,
-  Cancel,
 } from '@mui/icons-material';
 import { ticketsAPI, notesAPI } from '../services/api';
 import { Ticket, Note } from '../types';
@@ -41,20 +37,13 @@ import { useAuth } from '../context/AuthContext';
 const TicketDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { } = useAuth();
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [newNote, setNewNote] = useState('');
   const [submittingNote, setSubmittingNote] = useState(false);
-
-  useEffect(() => {
-    if (id) {
-      fetchTicket();
-      fetchNotes();
-    }
-  }, [id]);
 
   const fetchTicket = async () => {
     try {
@@ -75,6 +64,13 @@ const TicketDetail: React.FC = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      fetchTicket();
+      fetchNotes();
+    }
+  }, [id]);
 
   const handleAddNote = async (e: React.FormEvent) => {
     e.preventDefault();

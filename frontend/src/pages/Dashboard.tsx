@@ -60,7 +60,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchTickets(1);
-  }, [filters]);
+  }, [filters, fetchTickets]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     fetchTickets(page);

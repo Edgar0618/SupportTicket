@@ -21,7 +21,6 @@ import {
 import {
   ArrowBack,
   SmartToy,
-  AttachFile,
   CloudUpload,
   Close,
 } from '@mui/icons-material';
