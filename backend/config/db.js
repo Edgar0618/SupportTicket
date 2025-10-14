@@ -4,7 +4,7 @@ const connectDB = async() => {
     try {
         console.log('MONGO_URI from env:', process.env.MONGO_URI ? 'SET' : 'NOT SET')
         console.log('MONGO_URI value:', process.env.MONGO_URI)
-        console.log('Force redeploy - OpenAI removed completely')
+        console.log('Force redeploy - OpenAI removed completely - MongoDB Atlas IP whitelist fix')
         
         // Test the connection string format
         console.log('Testing connection string format...')
