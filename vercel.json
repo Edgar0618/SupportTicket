@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && npm install && npm run build",
   "builds": [
     {
       "src": "backend/server.js",

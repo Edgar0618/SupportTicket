@@ -31,6 +31,42 @@ app.use((req, res, next) => {
     }
 })
 
+// Root route
+app.get('/', (req, res) => {
+  const buildPath = path.join(__dirname, '../frontend/build/index.html')
+  const fs = require('fs')
+  
+  if (fs.existsSync(buildPath)) {
+    res.sendFile(buildPath)
+  } else {
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Support Desk</title>
+          <style>
+            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #1a1a1a; color: white; }
+            .container { max-width: 600px; margin: 0 auto; }
+            .logo { font-size: 2em; margin-bottom: 20px; }
+            .message { font-size: 1.2em; margin: 20px 0; }
+            .api-link { color: #ff6b35; text-decoration: none; }
+            .api-link:hover { text-decoration: underline; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="logo">🎫 Support Desk</div>
+            <div class="message">Welcome to the Support Desk API!</div>
+            <div class="message">Frontend is being built. API is available at:</div>
+            <a href="/api" class="api-link">/api</a>
+            <div class="message">Please wait a moment for the full application to load.</div>
+          </div>
+        </body>
+      </html>
+    `)
+  }
+})
+
 // API Routes
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoutes'))
