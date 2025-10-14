@@ -6,9 +6,7 @@ import {
   Typography,
   Chip,
   Box,
-  Avatar,
   IconButton,
-  Tooltip,
   Menu,
   MenuItem,
 } from '@mui/material';

@@ -14,7 +14,6 @@ import {
   ArrowForward,
   AttachFile,
   SmartToy,
-  Person,
   Schedule,
 } from '@mui/icons-material';
 import { Ticket } from '../types';

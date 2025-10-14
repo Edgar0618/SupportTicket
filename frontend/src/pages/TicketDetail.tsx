@@ -32,12 +32,10 @@ import {
 } from '@mui/icons-material';
 import { ticketsAPI, notesAPI } from '../services/api';
 import { Ticket, Note } from '../types';
-import { useAuth } from '../context/AuthContext';
 
 const TicketDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { } = useAuth();
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +63,7 @@ const TicketDetail: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (id) {
       fetchTicket();

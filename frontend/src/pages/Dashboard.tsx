@@ -58,9 +58,10 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchTickets(1);
-  }, [filters, fetchTickets]);
+  }, [filters]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     fetchTickets(page);

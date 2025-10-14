@@ -23,7 +23,6 @@ import {
 import {
   Menu as MenuIcon,
   Dashboard,
-  SupportAgent,
   Add,
   AdminPanelSettings,
   Logout,

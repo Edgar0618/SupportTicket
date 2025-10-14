@@ -7,12 +7,7 @@ import {
   LinearProgress,
 } from '@mui/material';
 import {
-  SupportAgent,
   TrendingUp,
-  CheckCircle,
-  Schedule,
-  Person,
-  AdminPanelSettings,
 } from '@mui/icons-material';
 
 interface AdminStatsCardProps {

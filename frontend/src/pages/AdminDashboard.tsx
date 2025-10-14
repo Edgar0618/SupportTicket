@@ -14,11 +14,6 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Chip,
 } from '@mui/material';
 import {
@@ -27,11 +22,8 @@ import {
   SupportAgent,
   TrendingUp,
   CheckCircle,
-  Schedule,
   AdminPanelSettings,
   Person,
-  Assignment,
-  SmartToy,
 } from '@mui/icons-material';
 import { analyticsAPI, adminAPI, ticketsAPI } from '../services/api';
 import { DashboardAnalytics, User, Ticket } from '../types';
@@ -100,6 +92,7 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (tabValue === 1) {
       fetchTickets();
