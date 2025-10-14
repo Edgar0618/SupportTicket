@@ -61,9 +61,9 @@ const AdminStatsCard: React.FC<AdminStatsCardProps> = ({
                 mr: 2,
               }}
             >
-              {React.cloneElement(icon as React.ReactElement, {
-                sx: { fontSize: 24, color: getColorValue() },
-              })}
+              <Box sx={{ fontSize: 24, color: getColorValue() }}>
+                {icon}
+              </Box>
             </Box>
             <Box>
               <Typography variant="h4" sx={{ fontWeight: 600, lineHeight: 1 }}>
