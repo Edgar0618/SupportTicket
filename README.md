@@ -1,27 +1,15 @@
-# Smart Support Desk
+# Support Desk
 
-A complete MERN stack support desk application with smart bot automation features.
+A modern support ticket management system with smart automation features.
 
 ## Live Demo
 **https://support-ticket-pi.vercel.app/**
 
 ## Features
+- Create and manage support tickets
 - Smart auto-categorization and priority detection
-- Complete ticket management with file uploads
-- Real-time notes and conversation system
-- Email notifications
 - Admin dashboard with analytics
-- Dark theme UI with responsive design
+- Clean, professional interface
+- Responsive design
 
-## Environment Variables
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-CLOUDINARY_API_KEY=your_cloudinary_key
-CLOUDINARY_API_SECRET=your_cloudinary_secret
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email
-SMTP_PASS=your_password
-```
+Created by Edgar Guerrero
