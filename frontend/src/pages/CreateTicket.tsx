@@ -49,6 +49,12 @@ const CreateTicket: React.FC = () => {
     setError('');
   };
 
+  const handleSelectChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setError('');
+  };
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files);
@@ -107,7 +113,7 @@ const CreateTicket: React.FC = () => {
       </Box>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={8} component="div">
+        <Grid item xs={12} md={8}>
           <Card>
             <CardContent>
               <form onSubmit={handleSubmit}>
@@ -141,13 +147,13 @@ const CreateTicket: React.FC = () => {
                 />
 
                 <Grid container spacing={2} sx={{ mb: 2 }}>
-                  <Grid item xs={12} sm={6} component="div">
+                  <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
                       <InputLabel>Category</InputLabel>
                       <Select
                         name="category"
                         value={formData.category}
-                        onChange={handleChange}
+                        onChange={handleSelectChange}
                         label="Category"
                       >
                         <MenuItem value="">Auto-detect</MenuItem>
@@ -161,13 +167,13 @@ const CreateTicket: React.FC = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={6} component="div">
+                  <Grid item xs={12} sm={6}>
                     <FormControl fullWidth>
                       <InputLabel>Priority</InputLabel>
                       <Select
                         name="priority"
                         value={formData.priority}
-                        onChange={handleChange}
+                        onChange={handleSelectChange}
                         label="Priority"
                       >
                         <MenuItem value="">Auto-detect</MenuItem>
@@ -237,7 +243,7 @@ const CreateTicket: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={4} component="div">
+        <Grid item xs={12} md={4}>
           <Paper sx={{ p: 2, mb: 2, backgroundColor: 'background.paper' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <SmartToy sx={{ color: 'primary.main', mr: 1 }} />

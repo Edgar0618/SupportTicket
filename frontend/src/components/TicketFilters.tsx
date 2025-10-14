@@ -7,10 +7,9 @@ import {
   Select,
   MenuItem,
   Button,
-  Grid,
   Chip,
 } from '@mui/material';
-import { Search, FilterList, Clear } from '@mui/icons-material';
+import { Search, Clear } from '@mui/icons-material';
 
 interface TicketFiltersProps {
   search: string;
@@ -39,8 +38,8 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
 
   return (
     <Box sx={{ mb: 3, p: { xs: 2, sm: 3 }, backgroundColor: 'background.paper', borderRadius: 3 }}>
-      <Grid container spacing={{ xs: 2, sm: 3 }} alignItems="center">
-        <Grid item xs={12} md={4} component="div">
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'center' }}>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
           <TextField
             fullWidth
             placeholder="Search tickets..."
@@ -52,12 +51,21 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             sx={{
               '& .MuiOutlinedInput-root': {
                 backgroundColor: 'background.default',
+                '& fieldset': {
+                  borderColor: 'divider',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'primary.main',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
               },
             }}
           />
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} md={2} component="div">
+        <Box sx={{ minWidth: 150 }}>
           <FormControl fullWidth>
             <InputLabel>Status</InputLabel>
             <Select
@@ -72,9 +80,9 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
               <MenuItem value="closed">Closed</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} md={2} component="div">
+        <Box sx={{ minWidth: 150 }}>
           <FormControl fullWidth>
             <InputLabel>Priority</InputLabel>
             <Select
@@ -89,9 +97,9 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
               <MenuItem value="high">High</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} md={2} component="div">
+        <Box sx={{ minWidth: 150 }}>
           <FormControl fullWidth>
             <InputLabel>Category</InputLabel>
             <Select
@@ -109,20 +117,28 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
               <MenuItem value="Other">Other</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        </Box>
 
-        <Grid item xs={12} md={2} component="div">
+        <Box sx={{ minWidth: 100 }}>
           <Button
             fullWidth
             variant="outlined"
             onClick={onClearFilters}
             disabled={!hasActiveFilters}
             startIcon={<Clear />}
+            sx={{
+              borderColor: 'divider',
+              color: 'text.secondary',
+              '&:hover': {
+                borderColor: 'primary.main',
+                color: 'primary.main',
+              },
+            }}
           >
             Clear
           </Button>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
 
       {hasActiveFilters && (
         <Box sx={{ mt: 2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -130,6 +146,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             <Chip
               label={`Search: "${search}"`}
               onDelete={() => onSearchChange('')}
+              size="small"
               color="primary"
               variant="outlined"
             />
@@ -138,7 +155,8 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             <Chip
               label={`Status: ${status}`}
               onDelete={() => onStatusChange('')}
-              color="primary"
+              size="small"
+              color="secondary"
               variant="outlined"
             />
           )}
@@ -146,7 +164,8 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             <Chip
               label={`Priority: ${priority}`}
               onDelete={() => onPriorityChange('')}
-              color="primary"
+              size="small"
+              color="warning"
               variant="outlined"
             />
           )}
@@ -154,7 +173,8 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
             <Chip
               label={`Category: ${category}`}
               onDelete={() => onCategoryChange('')}
-              color="primary"
+              size="small"
+              color="info"
               variant="outlined"
             />
           )}
