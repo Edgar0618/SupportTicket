@@ -12,7 +12,11 @@ const connectDB = async() => {
         console.log('URI length:', uri ? uri.length : 'undefined')
         console.log('URI starts with mongodb:', uri ? uri.startsWith('mongodb') : 'undefined')
         
-        const conn = await mongoose.connect(uri)
+        // Try connecting without database name first
+        const conn = await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
         console.log(`MongoDB Connected to host: ${conn.connection.host}`.cyan.underline);
         console.log(`Using database name: ${conn.connection.name}`.magenta.bold);
         console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
