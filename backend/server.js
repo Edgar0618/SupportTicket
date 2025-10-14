@@ -123,8 +123,9 @@ app.get('/', (req, res) => {
       <body>
         <div class="container">
           <div class="header">
-            <div class="logo">🎫 Support Desk</div>
+            <div class="logo">Support Desk</div>
             <div class="subtitle">Smart Ticket Management System</div>
+            <div style="color: #666; font-size: 0.9em; margin-top: 10px;">Created by Edgar Guerrero</div>
           </div>
           
           <div class="tabs">
