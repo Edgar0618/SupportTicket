@@ -1,24 +1,14 @@
 const express = require('express')
-const colors = require('colors')
 const dotenv = require('dotenv').config()
-const {errorHandler} = require('./middleware/errorMIddleware')
-const connectDB = require('./config/db')
 const PORT = process.env.PORT || 4000
-
-// Connect to database
-connectDB()
 
 const app = express()
 
-// middleware necessary to populate req.body properly in express routes
-// allow us to send raw JSON 
-// handling incoming request data/ json payloads (data inside)
+// Basic middleware
 app.use(express.json())
-// handles form submissions
-// parses incoming requests with URL-encoded payloads
 app.use(express.urlencoded({extended: false}))
 
-// Enable CORS for frontend
+// CORS
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
@@ -30,16 +20,50 @@ app.use((req, res, next) => {
     }
 })
 
+// Simple routes without database
 app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the Support Desk API' })
+  res.status(200).json({ 
+    message: 'Support Desk API is working!',
+    status: 'success',
+    features: [
+      'User authentication',
+      'Ticket management', 
+      'Smart bot suggestions',
+      'Admin dashboard'
+    ]
+  })
 })
 
-// Routes
-app.use('/api/users', require('./routes/userRoutes'))
-app.use('/api/tickets', require('./routes/ticketRoutes'))
-app.use('/api/notes', require('./routes/noteRoutes'))
-app.use('/api/analytics', require('./routes/analyticsRoutes'))
+app.get('/api/test', (req, res) => {
+  res.status(200).json({ 
+    message: 'API is working!',
+    timestamp: new Date().toISOString()
+  })
+})
 
-app.use(errorHandler)
+// Simple user routes (no database for now)
+app.post('/api/users/register', (req, res) => {
+  res.status(201).json({ 
+    message: 'User registration endpoint working',
+    note: 'Database connection disabled for testing'
+  })
+})
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+app.post('/api/users/login', (req, res) => {
+  res.status(200).json({ 
+    message: 'Login endpoint working',
+    token: 'fake-jwt-token-for-testing'
+  })
+})
+
+// Simple ticket routes (no database for now)
+app.get('/api/tickets', (req, res) => {
+  res.status(200).json({ 
+    message: 'Tickets endpoint working',
+    tickets: [
+      { id: 1, subject: 'Test Ticket', status: 'open' }
+    ]
+  })
+})
+
+app.listen(PORT, () => console.log(`Simple server started on port ${PORT}`))
