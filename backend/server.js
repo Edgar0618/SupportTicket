@@ -1,6 +1,7 @@
 const express = require('express')
 const colors = require('colors')
 const dotenv = require('dotenv').config()
+const path = require('path')
 const {errorHandler} = require('./middleware/errorMIddleware')
 const connectDB = require('./config/db')
 const PORT = process.env.PORT || 4000
@@ -30,15 +31,19 @@ app.use((req, res, next) => {
     }
 })
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Welcome to the Support Desk API' })
-})
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-// Routes
+// API Routes
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoutes'))
 app.use('/api/notes', require('./routes/noteRoutes'))
 app.use('/api/analytics', require('./routes/analyticsRoutes'))
+
+// Catch all handler: send back React's index.html file for any non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+})
 
 app.use(errorHandler)
 
