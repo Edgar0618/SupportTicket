@@ -242,11 +242,11 @@ const CreateTicket: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <SmartToy sx={{ color: 'primary.main', mr: 1 }} />
               <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                Smart Features
+                Smart Bot Features
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              Our system will automatically:
+              Our smart bot will automatically:
             </Typography>
             <ul style={{ paddingLeft: '20px', margin: 0 }}>
               <li>Analyze and categorize your ticket</li>
@@ -259,7 +259,7 @@ const CreateTicket: React.FC = () => {
           {aiSuggestions.length > 0 && (
             <Paper sx={{ p: 2, backgroundColor: 'background.paper' }}>
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>
-                AI Suggestions
+                Smart Bot Suggestions
               </Typography>
               {aiSuggestions.map((suggestion, index) => (
                 <Chip

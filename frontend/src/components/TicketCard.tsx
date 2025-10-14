@@ -102,7 +102,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ ticket }) => {
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <SmartToy sx={{ fontSize: 16, color: 'primary.main', mr: 1 }} />
             <Typography variant="caption" color="primary.main">
-              AI Suggestions Available
+              Smart Bot Suggestions Available
             </Typography>
           </Box>
         )}

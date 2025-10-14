@@ -1,6 +1,6 @@
 # 🚀 Smart Support Desk
 
-A complete MERN stack support desk application with intelligent automation features.
+A complete MERN stack support desk application with smart bot automation features.
 
 ## Features
 - Smart auto-categorization and priority detection

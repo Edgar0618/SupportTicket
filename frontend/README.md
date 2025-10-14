@@ -5,7 +5,7 @@ React TypeScript frontend for the Smart Support Desk application.
 ## Features
 - Dark theme with Material-UI
 - Complete ticket management system
-- Smart automation features display
+- Smart bot automation features display
 - File upload with Cloudinary
 - Real-time notes and conversation
 - Responsive design

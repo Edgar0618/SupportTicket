@@ -325,7 +325,7 @@ const TicketDetail: React.FC = () => {
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                   <SmartToy sx={{ color: 'primary.main', mr: 1 }} />
                   <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                    AI Suggestions
+                    Smart Bot Suggestions
                   </Typography>
                 </Box>
                 <List dense>
