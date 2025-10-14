@@ -1,11 +1,5 @@
-const OpenAI = require('openai');
 const natural = require('natural');
 const nlp = require('compromise');
-
-// Initialize OpenAI (you'll need to add OPENAI_API_KEY to your .env file)
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 // Knowledge base of common solutions (you can expand this)
 const knowledgeBase = [
@@ -128,7 +122,7 @@ class AIService {
     return { priority: 'low', score };
   }
 
-  // Get AI-powered solution recommendations
+  // Get smart bot solution recommendations (knowledge base only)
   static async getSolutionRecommendations(description, subject = '', category = 'General') {
     try {
       const categorization = await this.categorizeTicket(description, subject);
@@ -143,16 +137,13 @@ class AIService {
       
       if (matchingSolutions.length > 0) {
         recommendations = matchingSolutions[0].solutions;
-      }
-      
-      // Use OpenAI for more sophisticated recommendations if API key is available
-      if (process.env.OPENAI_API_KEY) {
-        try {
-          const aiRecommendations = await this.getAIRecommendations(description, subject, category);
-          recommendations = [...recommendations, ...aiRecommendations];
-        } catch (error) {
-          console.log('OpenAI API error, using fallback recommendations:', error.message);
-        }
+      } else {
+        // Fallback recommendations
+        recommendations = [
+          'Please provide more details about your issue',
+          'Try refreshing the page or clearing your browser cache',
+          'Contact support if the issue persists'
+        ];
       }
       
       return {
@@ -174,46 +165,6 @@ class AIService {
     }
   }
 
-  // Use OpenAI for advanced recommendations
-  static async getAIRecommendations(description, subject = '', category = 'General') {
-    const prompt = `
-    As a support desk AI assistant, analyze this support ticket and provide 3 helpful solution recommendations.
-    
-    Ticket Subject: ${subject}
-    Ticket Description: ${description}
-    Category: ${category}
-    
-    Provide practical, actionable solutions that a user can try. Be concise and helpful.
-    Format each recommendation as a clear, numbered step.
-    `;
-
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful support desk assistant. Provide practical, actionable solutions for user issues."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      max_tokens: 300,
-      temperature: 0.7,
-    });
-
-    const aiResponse = response.choices[0].message.content;
-    
-    // Parse AI response into individual recommendations
-    const recommendations = aiResponse
-      .split('\n')
-      .filter(line => line.trim() && (line.includes('.') || line.includes(':')))
-      .map(line => line.replace(/^\d+\.\s*/, '').trim())
-      .slice(0, 3);
-    
-    return recommendations;
-  }
 
   // Find similar tickets
   static async findSimilarTickets(ticketDescription, existingTickets = []) {
