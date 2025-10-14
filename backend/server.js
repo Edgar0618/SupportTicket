@@ -31,19 +31,49 @@ app.use((req, res, next) => {
     }
 })
 
-// Serve static files from React build
-app.use(express.static(path.join(__dirname, '../frontend/build')))
-
 // API Routes
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoutes'))
 app.use('/api/notes', require('./routes/noteRoutes'))
 app.use('/api/analytics', require('./routes/analyticsRoutes'))
 
-// Catch all handler: send back React's index.html file for any non-API routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-})
+// Serve static files from React build (if it exists)
+const buildPath = path.join(__dirname, '../frontend/build')
+const indexPath = path.join(buildPath, 'index.html')
+
+try {
+  // Check if build directory exists
+  const fs = require('fs')
+  if (fs.existsSync(buildPath)) {
+    app.use(express.static(buildPath))
+    
+    // Catch all handler: send back React's index.html file for any non-API routes
+    app.get('*', (req, res) => {
+      // Skip API routes
+      if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ error: 'API route not found' })
+      }
+      
+      // For all other routes, serve the React app
+      res.sendFile(indexPath, (err) => {
+        if (err) {
+          console.error('Error serving React app:', err)
+          res.status(404).json({ error: 'React app not found' })
+        }
+      })
+    })
+  } else {
+    console.log('Frontend build not found, serving API only')
+    app.get('*', (req, res) => {
+      res.status(404).json({ 
+        error: 'Frontend not built yet', 
+        message: 'Please build the frontend first' 
+      })
+    })
+  }
+} catch (error) {
+  console.error('Error setting up static files:', error)
+}
 
 app.use(errorHandler)
 
