@@ -1,7 +1,22 @@
 import React from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography, useTheme, useMediaQuery } from '@mui/material';
 
-const LoadingSpinner: React.FC = () => {
+interface LoadingSpinnerProps {
+  message?: string;
+  size?: number;
+  fullHeight?: boolean;
+}
+
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ 
+  message = 'Loading Support Desk...', 
+  size,
+  fullHeight = true 
+}) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
+  const spinnerSize = size || (isMobile ? 40 : 60);
+
   return (
     <Box
       sx={{
@@ -9,25 +24,28 @@ const LoadingSpinner: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '100vh',
+        minHeight: fullHeight ? '100vh' : '200px',
         backgroundColor: 'background.default',
+        gap: { xs: 1.5, sm: 2 },
+        padding: { xs: 2, sm: 3 },
       }}
     >
       <CircularProgress 
-        size={60} 
+        size={spinnerSize} 
         sx={{ 
           color: 'primary.main',
-          mb: 2 
+          filter: 'drop-shadow(0 0 8px rgba(255, 107, 53, 0.3))'
         }} 
       />
       <Typography 
-        variant="h6" 
+        variant={isMobile ? 'body1' : 'h6'} 
         sx={{ 
           color: 'text.secondary',
-          fontWeight: 500 
+          fontWeight: 500,
+          textAlign: 'center',
         }}
       >
-        Loading Support Desk...
+        {message}
       </Typography>
     </Box>
   );

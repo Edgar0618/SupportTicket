@@ -38,8 +38,8 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
   const hasActiveFilters = search || status || priority || category;
 
   return (
-    <Box sx={{ mb: 3, p: 2, backgroundColor: 'background.paper', borderRadius: 2 }}>
-      <Grid container spacing={2} alignItems="center">
+    <Box sx={{ mb: 3, p: { xs: 2, sm: 3 }, backgroundColor: 'background.paper', borderRadius: 3 }}>
+      <Grid container spacing={{ xs: 2, sm: 3 }} alignItems="center">
         <Grid item xs={12} md={4}>
           <TextField
             fullWidth
