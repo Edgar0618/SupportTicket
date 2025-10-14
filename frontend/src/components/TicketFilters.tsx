@@ -40,7 +40,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
   return (
     <Box sx={{ mb: 3, p: { xs: 2, sm: 3 }, backgroundColor: 'background.paper', borderRadius: 3 }}>
       <Grid container spacing={{ xs: 2, sm: 3 }} alignItems="center">
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} component="div">
           <TextField
             fullWidth
             placeholder="Search tickets..."
@@ -57,7 +57,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
           />
         </Grid>
 
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={2} component="div">
           <FormControl fullWidth>
             <InputLabel>Status</InputLabel>
             <Select
@@ -74,7 +74,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
           </FormControl>
         </Grid>
 
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={2} component="div">
           <FormControl fullWidth>
             <InputLabel>Priority</InputLabel>
             <Select
@@ -91,7 +91,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
           </FormControl>
         </Grid>
 
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={2} component="div">
           <FormControl fullWidth>
             <InputLabel>Category</InputLabel>
             <Select
@@ -111,7 +111,7 @@ const TicketFilters: React.FC<TicketFiltersProps> = ({
           </FormControl>
         </Grid>
 
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={2} component="div">
           <Button
             fullWidth
             variant="outlined"

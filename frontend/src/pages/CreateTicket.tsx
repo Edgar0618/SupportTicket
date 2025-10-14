@@ -107,7 +107,7 @@ const CreateTicket: React.FC = () => {
       </Box>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} component="div">
           <Card>
             <CardContent>
               <form onSubmit={handleSubmit}>
@@ -141,7 +141,7 @@ const CreateTicket: React.FC = () => {
                 />
 
                 <Grid container spacing={2} sx={{ mb: 2 }}>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={6} component="div">
                     <FormControl fullWidth>
                       <InputLabel>Category</InputLabel>
                       <Select
@@ -161,7 +161,7 @@ const CreateTicket: React.FC = () => {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={6} component="div">
                     <FormControl fullWidth>
                       <InputLabel>Priority</InputLabel>
                       <Select
@@ -237,7 +237,7 @@ const CreateTicket: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} component="div">
           <Paper sx={{ p: 2, mb: 2, backgroundColor: 'background.paper' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <SmartToy sx={{ color: 'primary.main', mr: 1 }} />

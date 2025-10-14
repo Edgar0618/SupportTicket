@@ -184,7 +184,7 @@ const AdminDashboard: React.FC = () => {
         {analytics && (
           <>
             <Grid container spacing={3} sx={{ mb: 4 }}>
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} component="div">
                 <AdminStatsCard
                   title="Total Tickets"
                   value={analytics.overview.totalTickets}
@@ -192,7 +192,7 @@ const AdminDashboard: React.FC = () => {
                   color="primary"
                 />
               </Grid>
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} component="div">
                 <AdminStatsCard
                   title="Open Tickets"
                   value={analytics.overview.openTickets}
@@ -201,7 +201,7 @@ const AdminDashboard: React.FC = () => {
                   progress={Math.round((analytics.overview.openTickets / analytics.overview.totalTickets) * 100)}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} component="div">
                 <AdminStatsCard
                   title="Closed Tickets"
                   value={analytics.overview.closedTickets}
@@ -210,7 +210,7 @@ const AdminDashboard: React.FC = () => {
                   progress={Math.round((analytics.overview.closedTickets / analytics.overview.totalTickets) * 100)}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} component="div">
                 <AdminStatsCard
                   title="Total Users"
                   value={analytics.metrics.totalUsers}
@@ -221,7 +221,7 @@ const AdminDashboard: React.FC = () => {
             </Grid>
 
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} component="div">
                 <Card>
                   <CardContent>
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>
@@ -247,7 +247,7 @@ const AdminDashboard: React.FC = () => {
                 </Card>
               </Grid>
 
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} component="div">
                 <Card>
                   <CardContent>
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>

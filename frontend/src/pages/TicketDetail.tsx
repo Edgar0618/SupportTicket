@@ -157,7 +157,7 @@ const TicketDetail: React.FC = () => {
       </Box>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} component="div">
           <Card sx={{ mb: 3 }}>
             <CardContent>
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>
@@ -258,7 +258,7 @@ const TicketDetail: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} component="div">
           <Card sx={{ mb: 2 }}>
             <CardContent>
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>
